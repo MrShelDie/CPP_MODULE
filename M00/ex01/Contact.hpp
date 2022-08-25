@@ -5,21 +5,14 @@
 
 class Contact {
 public:
+	Contact();
 	Contact(std::string firstName,
 			std::string lastName,
 			std::string nickname,
 			std::string phoneNumber,
-			std::string darkestSecret);
-	Contact(const Contact &other);
-	~Contact();
-	Contact& operator=(const Contact &other);
-
-private:
-	Contact();
-
-private:
-	void copyFieldsFrom(const Contact &other);
-
+			std::string darkestSecret
+	);
+			
 private:
 	std::string firstName;
 	std::string lastName;
