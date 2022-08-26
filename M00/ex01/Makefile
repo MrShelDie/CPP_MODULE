@@ -1,8 +1,8 @@
-SRC = 							\
-	BufferOverflowException.cpp \
-	Contact.cpp 				\
-	PhoneBook.cpp				\
-	main.cpp
+SRC = 						\
+	source/Contact.cpp 		\
+	source/PhoneBook.cpp	\
+	source/Executor.cpp		\
+	source/main.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
@@ -10,7 +10,7 @@ NAME = phoneBook
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-CPPFLAGS = -MMD
+CPPFLAGS = -MMD -I./include
 
 all: $(NAME)
 

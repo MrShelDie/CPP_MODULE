@@ -2,7 +2,6 @@
 # define PHONE_BOOK_HPP
 
 # include "Contact.hpp"
-# include "BufferOverflowException.hpp"
 
 class PhoneBook {
 public:
@@ -14,7 +13,7 @@ public:
 	PhoneBook& operator=(const PhoneBook &other);
 
 	void addContact(const Contact &contact);
-	Contact findContactByIndex(size_t index);
+	Contact findContactByIndex(size_t index) const;
 	
 	size_t getContactCount() const;
 

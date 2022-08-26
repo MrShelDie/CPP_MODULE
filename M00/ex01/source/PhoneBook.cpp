@@ -16,13 +16,11 @@ PhoneBook& PhoneBook::operator=(const PhoneBook &other) {
 }
 
 void PhoneBook::addContact(const Contact &contact) {
-	if (contactCount == MAX_CONTACT_COUNT) {
-		throw BufferOverflowException("The phone book already has the maximum number of contacts");
-	}
-	contacts[++contactCount] = contact; 
+	contactCount = (contactCount + 1) % MAX_CONTACT_COUNT;
+	contacts[contactCount] = contact; 
 }
 
-Contact PhoneBook::findContactByIndex(size_t index) {
+Contact PhoneBook::findContactByIndex(size_t index) const {
 	if (index > contactCount) {
 		throw std::out_of_range("Invalid contact index");
 	}

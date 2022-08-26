@@ -23,3 +23,19 @@ Contact::Contact(
 	this->phoneNumber = phoneNumber;
 	this->darkestSecret = darkestSecret;
 }
+
+std::string Contact::getFirstName() const {
+	return firstName;
+}
+
+std::string Contact::getLastName() const {
+	return lastName;
+}
+
+std::string Contact::getNickname() const {
+	return nickname;
+}
+
+std::string Contact::getPhoneNumber() const {
+	return phoneNumber;
+}

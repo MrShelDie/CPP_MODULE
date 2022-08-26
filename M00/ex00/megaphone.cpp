@@ -12,7 +12,7 @@ void printUpperedStr(int argc, char *argv[]) {
 			std::cout << c;
 		}
 	}
-	std::cout << std::endl;
+	std::cout << "\n";
 }
 
 int main(int argc, char *argv[]) {

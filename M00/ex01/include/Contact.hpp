@@ -12,6 +12,11 @@ public:
 			std::string phoneNumber,
 			std::string darkestSecret
 	);
+
+	std::string getFirstName() const;
+	std::string getLastName() const;
+	std::string getNickname() const;
+	std::string getPhoneNumber() const;
 			
 private:
 	std::string firstName;
