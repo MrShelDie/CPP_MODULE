@@ -6,6 +6,8 @@
 
 class PhoneBook {
 public:
+	static const int MAX_CONTACT_COUNT = 8;
+
 	PhoneBook();
 	PhoneBook(const PhoneBook &other);
 
@@ -18,8 +20,6 @@ public:
 
 private:
 	void copyContacts(const Contact contacts[], size_t contactCount);
-
-	static const int MAX_CONTACT_COUNT = 8;
 
 	Contact contacts[MAX_CONTACT_COUNT];
 	size_t contactCount;
