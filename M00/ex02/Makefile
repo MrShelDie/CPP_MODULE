@@ -1,12 +1,8 @@
-SRC = 						\
-	source/Contact.cpp 		\
-	source/PhoneBook.cpp	\
-	source/Executor.cpp		\
-	source/main.cpp
+SRC = Account.cpp tests.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
-NAME = phoneBook
+NAME = account
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 CPPFLAGS = -MMD -I./include
