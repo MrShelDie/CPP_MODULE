@@ -39,3 +39,7 @@ std::string Contact::getNickname() const {
 std::string Contact::getPhoneNumber() const {
 	return phoneNumber;
 }
+
+std::string Contact::getDarkestSecret() const {
+	return darkestSecret;
+}

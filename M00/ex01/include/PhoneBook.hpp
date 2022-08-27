@@ -12,6 +12,8 @@ public:
 
 	PhoneBook& operator=(const PhoneBook &other);
 
+	void copyPhoneBook(const PhoneBook &other);
+
 	void addContact(const Contact &contact);
 	Contact findContactByIndex(size_t index) const;
 	
@@ -20,8 +22,10 @@ public:
 private:
 	void copyContacts(const Contact contacts[], size_t contactCount);
 
+private:
 	Contact contacts[MAX_CONTACT_COUNT];
 	size_t contactCount;
+	size_t nextContactIndex;
 };
 
 #endif

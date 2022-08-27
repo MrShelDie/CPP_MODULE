@@ -20,9 +20,13 @@ private:
 	void performExit();
 	void handleUnknownCommand() const;
 
-	void displayAllContacts() const;
-	void tryDisplayContactByIndex(size_t index) const;
-	void displayContact(const Contact &contact, size_t index) const;
+	void displayAllContactsShortInfo() const;
+
+	void tryDisplayContactShortInfoByIndex(size_t index) const;
+	void tryDisplayContactFullInfoByIndex(size_t index) const;
+
+	void displayContactShortInfo(const Contact &contact, size_t index) const;
+	void displayContactFullInfo(const Contact &contact, size_t index) const;
 
 	Contact promptEnterContact() const;
 	size_t promptEnterIndex() const;
@@ -31,6 +35,10 @@ private:
 
 	bool isSpaceInput(const std::string &str) const;
 
+	std::string sizeToString(size_t num) const;
+	std::string truncStr(std::string str) const;
+
+private:
 	static const size_t FIELD_WIDTH = 10;
 
 	PhoneBook phoneBook;

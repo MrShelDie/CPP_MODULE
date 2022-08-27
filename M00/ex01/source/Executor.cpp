@@ -1,5 +1,7 @@
 #include <iostream>
+#include <sstream>
 #include <iomanip>
+#include <limits>
 
 #include "Executor.hpp"
 
@@ -8,16 +10,11 @@ Executor::Executor() : running(true) {
 }
 
 std::string Executor::promptInput(const std::string &msg) const {
-	std::string userInput;
-
 	std::cout << msg;
+
+	std::string userInput;
 	std::cin >> userInput;
-	while (isSpaceInput(userInput)) {
-		std::cout << msg;
-		std::cin >> userInput;
-		std::cin.clear();
-    	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
+
 	return userInput;
 }
 
@@ -38,12 +35,8 @@ void Executor::executeCommand(const std::string &command) {
 }
 
 void Executor::performAdd() {
-	if (phoneBook.getContactCount() == PhoneBook::MAX_CONTACT_COUNT) {
-		printMaxContactAlert();
-	} else {
-		Contact contact = promptEnterContact();
-		phoneBook.addContact(contact);
-	}
+	Contact contact = promptEnterContact();
+	phoneBook.addContact(contact);
 }
 
 void Executor::printMaxContactAlert() const {
@@ -60,41 +53,79 @@ Contact Executor::promptEnterContact() const {
 }
 
 void Executor::performSearch() {
-	displayAllContacts();
+	displayAllContactsShortInfo();
 	size_t index = promptEnterIndex();
-	tryDisplayContactByIndex(index);
+	tryDisplayContactFullInfoByIndex(index);
 }
 
-void Executor::displayAllContacts() const {
+void Executor::displayAllContactsShortInfo() const {
 	const size_t contactCount = phoneBook.getContactCount();
 	for (size_t i = 0; i < contactCount; ++i) {
-		tryDisplayContactByIndex(i);
+		tryDisplayContactShortInfoByIndex(i);
 	}
 }
 
-void Executor::tryDisplayContactByIndex(size_t index) const {
+void Executor::tryDisplayContactShortInfoByIndex(size_t index) const {
 	try {
-		displayContact(phoneBook.findContactByIndex(index), index);
+		displayContactShortInfo(phoneBook.findContactByIndex(index), index);
 	} catch(const std::out_of_range &e) {
 		std::cerr << e.what() << '\n';
 	}
 }
 
-void Executor::displayContact(const Contact &contact, size_t index) const {
-	std::cout << std::setw(FIELD_WIDTH) << index << "|"
-			  << std::setw(FIELD_WIDTH) << contact.getFirstName() << "|"
-			  << std::setw(FIELD_WIDTH) << contact.getLastName() << "|"
-			  << std::setw(FIELD_WIDTH) << contact.getNickname() << "\n";
+void Executor::displayContactShortInfo(const Contact &contact, size_t index) const {
+	std::string truncatedIndex = truncStr(sizeToString(index));
+	std::string truncatedFirstName = truncStr(contact.getFirstName());
+	std::string truncatedLastName = truncStr(contact.getLastName());
+	std::string truncatedNickname = truncStr(contact.getNickname());
+
+	std::cout << std::setw(FIELD_WIDTH) << truncatedIndex << "|"
+			  << std::setw(FIELD_WIDTH) << truncatedFirstName << "|"
+			  << std::setw(FIELD_WIDTH) << truncatedLastName << "|"
+			  << std::setw(FIELD_WIDTH) << truncatedNickname << "\n";
+}
+
+void Executor::tryDisplayContactFullInfoByIndex(size_t index) const {
+	try {
+		displayContactFullInfo(phoneBook.findContactByIndex(index), index);
+	} catch(const std::out_of_range &e) {
+		std::cerr << e.what() << '\n';
+	}
+}
+
+void Executor::displayContactFullInfo(const Contact &contact, size_t index) const {
+	std::cout << "Index: " << index << "\n"
+			  << "First name: " << contact.getFirstName() << "\n"
+			  << "Last name: " << contact.getLastName() << "\n"
+			  << "Nickname: " << contact.getNickname() << "\n"
+			  << "Phone number: " << contact.getPhoneNumber() << "\n"
+			  << "Darkest secret: " << contact.getDarkestSecret() << "\n";
+}
+
+std::string Executor::truncStr(std::string str) const {
+	if (str.size() >= FIELD_WIDTH) {
+		str.resize(FIELD_WIDTH);
+		str[FIELD_WIDTH - 1] = '.';
+	}
+	return str;
+}
+
+std::string Executor::sizeToString(size_t num) const {
+	std::ostringstream oStringStream;
+	oStringStream << num;
+	return oStringStream.str();
 }
 
 size_t Executor::promptEnterIndex() const {
-	std::cout << "Enter index: ";
+	const std::string msg = "Enter index: ";
 	size_t index;
-	while (!(std::cin >> index)) {
+
+	std::cout << msg;
+	while (!(std::cin >> index) || index >= phoneBook.getContactCount()) {
 		std::cin.clear();
-    	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Incorrect index input\n";
-		std::cout << "Enter index: ";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Incorrect input\n";
+		std::cout << msg;
 	}
 	return index;
 }

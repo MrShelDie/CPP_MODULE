@@ -7,10 +7,11 @@ OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
 NAME = phoneBook
+TEST = phoneBookTest
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-CPPFLAGS = -MMD -I./include
+CPPFLAGS = -MMD -I./include -g
 
 all: $(NAME)
 
