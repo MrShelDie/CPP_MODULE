@@ -1,8 +1,8 @@
-SRC = Account.cpp tests.cpp
+SRC = main.cpp  newZombie.cpp  randomChump.cpp  Zombie.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
-NAME = account
+NAME = zombie
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 CPPFLAGS = -MMD

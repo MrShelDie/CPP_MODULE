@@ -1,8 +1,8 @@
-SRC = Account.cpp tests.cpp
+SRC = HumanA.cpp  HumanB.cpp  Weapon.cpp  main.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
-NAME = account
+NAME = humans
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 CPPFLAGS = -MMD

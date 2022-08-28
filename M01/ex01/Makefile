@@ -1,8 +1,8 @@
-SRC = Account.cpp tests.cpp
+SRC = main.cpp  Zombie.cpp  zombieHorde.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
-NAME = account
+NAME = zombieHorde
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 CPPFLAGS = -MMD
