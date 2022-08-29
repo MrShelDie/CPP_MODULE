@@ -1,8 +1,9 @@
-SRC = HumanA.cpp  HumanB.cpp  Weapon.cpp  main.cpp
+SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
-NAME = humans
+NAME = harl
+
 CXX = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 CPPFLAGS = -MMD

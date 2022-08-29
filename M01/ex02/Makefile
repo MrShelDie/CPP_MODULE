@@ -1,13 +1,13 @@
 SRC = main.cpp
 
 NAME = ref
-CC = c++
+CXX = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CXX) $(CFLAGS) -o $@ $<
 
 clean:
 

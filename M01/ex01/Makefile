@@ -3,14 +3,14 @@ OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
 NAME = zombieHorde
-CC = c++
+CXX = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 CPPFLAGS = -MMD
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $@
+	$(CXX) $(CFLAGS) $(OBJ) -o $@
 
 clean:
 	$(RM) $(OBJ) $(DEP)

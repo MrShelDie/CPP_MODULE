@@ -1,13 +1,14 @@
 SRC = main.cpp
 
 NAME = fileReplace
-CC = c++
+
+CXX = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CXX) $(CFLAGS) -o $@ $<
 
 clean:
 
