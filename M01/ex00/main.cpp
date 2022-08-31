@@ -12,7 +12,7 @@ int main(void) {
 		bob = newZombie("Bob");	
 	} catch (const std::bad_alloc& e) {
 		std::cerr << e.what() << '\n';
-		return 0;
+		return 1;
 	}
 	
 	bob->announce();
