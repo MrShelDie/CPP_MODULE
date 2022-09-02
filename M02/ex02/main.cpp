@@ -5,21 +5,43 @@
 int main( void ) {
 	
 	Fixed 		a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
-	Fixed const d( b );
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
-	a = Fixed( 1234.4321f );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
 
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
+	std::cout << "---------------------------------\n";
 
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+	const Fixed A(42.21f);
+	std::cout << A.toFloat() << "\n";
+
+	Fixed C;
+	C = A;
+	std::cout << C.toFloat() << "\n";
+
+	const Fixed B(5.05f);
+	std::cout << B.toFloat() << "\n";
+
+	std::cout << "(Fixed::max(A, B) == A): " << (Fixed::max(A, B) == A) << "\n";
+	std::cout << "(Fixed::min(A, B) == B): " << (Fixed::min(A, B) == B) << "\n";
+	std::cout << "(Fixed::min(a, b) == a): " << (Fixed::min(a, b) == a) << "\n";
+
+	std::cout << "(A > B): " << (A > B) << "\n";
+	std::cout << "(A >= B): " << (A >= B) << "\n";
+	std::cout << "!(A == B): " << !(A == B) << "\n";
+	std::cout << "(A != B): " << (A != B) << "\n";
+	std::cout << "!(A <= B): " << !(A <= B) << "\n";
+	std::cout << "!(A < B): " << !(A < B) << "\n";
+
+	std::cout << "((A + B) == 42.21f + 5.05f): " << ((A + B) == 42.21f + 5.05f) << "\n";
+	std::cout << "((A - B) == 42.21f - 5.05f): " << ((A - B) == 42.21f - 5.05f) << "\n";
+	std::cout << "A * B: " << A * B << "\n";
+	std::cout << "A / B: " << A / B << "\n";
 
 	return 0;
 }
