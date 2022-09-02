@@ -1,16 +1,17 @@
 #include <iostream>
 #include <climits>
-#include "ClapTrap.hpp"
+
+#include "ScavTrap.hpp"
 
 int main() {
-	ClapTrap a;
-	ClapTrap b("ClapTrap3000");
-	ClapTrap c(b);
+	ScavTrap a;
+	ScavTrap b("ClapTrap3000");
+	ScavTrap c(b);
 	
 	a = b;
 
 
-	for (size_t i = 0; i < 11; i++) {
+	for (size_t i = 0; i < 51; i++) {
 		std::cout << i << ": ";
 		a.attack("ClapTrap3000");
 	}
@@ -29,6 +30,10 @@ int main() {
 	std::cout << "Clap " << c.getName() << " has " << c.getHitPoints() << " hp\n";
 	c.beRepaired(UINT_MAX);
 	std::cout << "Clap " << c.getName() << " has " << c.getHitPoints() << " hp\n";
+
+
+	c.guardGate();
+
 
 	return 0;
 }

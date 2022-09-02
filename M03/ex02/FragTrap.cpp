@@ -1,0 +1,38 @@
+#include <iostream>
+
+#include "FragTrap.hpp"
+
+
+FragTrap::FragTrap() : FragTrap(name) {
+	std::cout << "FragTrap: " << name << " constructed\n";
+}
+
+FragTrap::FragTrap(const std::string& name) {
+	this->name = name;
+	hitPoints = 100;
+	energyPoints = 100;
+	attackDamage = 30;
+	std::cout << "FragTrap: " << name << " constructed with name\n";
+}
+
+FragTrap::FragTrap(const FragTrap& other) {
+	*this = other;
+	std::cout << "FragTrap: " << name << " copy constructed\n";
+}
+
+FragTrap::~FragTrap() {
+	std::cout << "FragTrap: " << name << " destructed\n";
+}
+
+void FragTrap::attack(const std::string& target) {
+	if (hitPoints == 0 || energyPoints == 0)
+		return;
+	std::cout << "FragTrap " << name << " attacks "
+			  << target << ", causing " << attackDamage
+			  << " points of damage!\n";
+	--energyPoints;
+}
+
+void FragTrap::highFivesGuys() {
+	std::cout << "FragTrap: " << name << " Give me five!\n";
+}
