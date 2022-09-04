@@ -1,38 +1,38 @@
 #include <iostream>
 #include <climits>
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main() {
-	ScavTrap a;
-	ScavTrap b("ClapTrap3000");
-	ScavTrap c(b);
+	FragTrap a;
+	FragTrap b("FragTrap3000");
+	FragTrap c(b);
 	
 	a = b;
 
-
-	for (size_t i = 0; i < 51; i++) {
+	unsigned int ePoints = a.getEnergyPoints();
+	for (size_t i = 0; i < ePoints + 1; i++) {
 		std::cout << i << ": ";
-		a.attack("ClapTrap3000");
+		a.attack("FragTrap3000");
 	}
 	std::cout << "\n";
 
 
-	std::cout << "Clap " << b.getName() << " has " << b.getHitPoints() << " hp\n";
+	std::cout << "Frag " << b.getName() << " has " << b.getHitPoints() << " hp\n";
 	b.takeDamage(1);
-	std::cout << "Clap " << b.getName() << " has " << b.getHitPoints() << " hp\n";
+	std::cout << "Frag " << b.getName() << " has " << b.getHitPoints() << " hp\n";
 	b.takeDamage(UINT_MAX);
-	std::cout << "Clap " << b.getName() << " has " << b.getHitPoints() << " hp\n";
+	std::cout << "Frag " << b.getName() << " has " << b.getHitPoints() << " hp\n";
 
 
-	std::cout << "Clap " << c.getName() << " has " << c.getHitPoints() << " hp\n";
+	std::cout << "Frag " << c.getName() << " has " << c.getHitPoints() << " hp\n";
 	c.beRepaired(1);
-	std::cout << "Clap " << c.getName() << " has " << c.getHitPoints() << " hp\n";
+	std::cout << "Frag " << c.getName() << " has " << c.getHitPoints() << " hp\n";
 	c.beRepaired(UINT_MAX);
-	std::cout << "Clap " << c.getName() << " has " << c.getHitPoints() << " hp\n";
+	std::cout << "Frag " << c.getName() << " has " << c.getHitPoints() << " hp\n";
 
 
-	c.guardGate();
+	c.highFivesGuys();
 
 
 	return 0;
