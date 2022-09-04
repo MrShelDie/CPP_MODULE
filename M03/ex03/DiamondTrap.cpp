@@ -3,7 +3,7 @@
 #include "DiamondTrap.hpp"
 
 
-DiamondTrap::DiamondTrap() {
+DiamondTrap::DiamondTrap() : DiamondTrap() {
 
 }
 
@@ -16,7 +16,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap& other) {
 }
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
-	// TODO ClapTrap::operator=(other);
-	std::cout << "FragTrap: " << name << " assigned with operator\n";
+	// ClapTrap::operator=(other);
+	std::cout << "DiamondTrap: " << name << " assigned with operator\n";
 	return *this;
 }
