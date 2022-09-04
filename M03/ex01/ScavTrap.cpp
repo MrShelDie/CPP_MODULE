@@ -24,6 +24,12 @@ ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap: " << name << " destructed\n";
 }
 
+ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
+	ClapTrap::operator=(other);
+	std::cout << "ScavTrap: " << name << " assigned with operator\n";
+	return *this;
+}
+
 void ScavTrap::guardGate() {
 	std::cout << "ScavTrap: " << name << " is now in Gate keeper mode\n";
 }
