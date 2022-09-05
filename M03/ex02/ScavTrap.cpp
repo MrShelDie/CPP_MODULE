@@ -3,20 +3,17 @@
 #include "ScavTrap.hpp"
 
 
-ScavTrap::ScavTrap() : ScavTrap(name) {
+ScavTrap::ScavTrap() {
+	init();
 	std::cout << "ScavTrap: " << name << " constructed\n";
 }
 
-ScavTrap::ScavTrap(const std::string& name) {
-	this->name = name;
-	hitPoints = 100;
-	energyPoints = 50;
-	attackDamage = 20;
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
+	init();
 	std::cout << "ScavTrap: " << name << " constructed with name\n";
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) {
-	*this = other;
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
 	std::cout << "ScavTrap: " << name << " copy constructed\n";
 }
 
@@ -29,6 +26,14 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
 	std::cout << "ScavTrap: " << name << " assigned with operator\n";
 	return *this;
 }
+
+
+void ScavTrap::init() {
+	hitPoints = 100;
+	energyPoints = 50;
+	attackDamage = 20;
+}
+
 
 void ScavTrap::attack(const std::string& target) {
 	if (hitPoints == 0 || energyPoints == 0)

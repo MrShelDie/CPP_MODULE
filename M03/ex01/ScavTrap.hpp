@@ -18,6 +18,7 @@ public:
 	void attack(const std::string& target);
 	void guardGate();
 
+
 private:
 
 	void init();

@@ -18,6 +18,11 @@ public:
 	void attack(const std::string& target);
 	void highFivesGuys();
 
+
+private:
+
+	void init();
+
 };
 
 #endif

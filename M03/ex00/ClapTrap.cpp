@@ -1,6 +1,8 @@
 #include <iostream>
 #include <climits>
+
 #include "ClapTrap.hpp"
+
 
 ClapTrap::ClapTrap() : name("default") {
 	init();
@@ -33,13 +35,11 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 }
 
 
-
 void ClapTrap::init() {
 	hitPoints = 10;
 	energyPoints = 10;
 	attackDamage = 0;
 }
-
 
 
 const std::string& ClapTrap::getName() const {
@@ -57,7 +57,6 @@ unsigned int ClapTrap::getEnergyPoints() const {
 unsigned int ClapTrap::getAttackDamage() const {
 	return attackDamage;
 }
-
 
 
 void ClapTrap::attack(const std::string& target) {

@@ -28,18 +28,12 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
 }
 
 
-
 void ScavTrap::init() {
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
 }
 
-
-
-void ScavTrap::guardGate() {
-	std::cout << "ScavTrap: " << name << " is now in Gate keeper mode\n";
-}
 
 void ScavTrap::attack(const std::string& target) {
 	if (hitPoints == 0 || energyPoints == 0)
@@ -48,4 +42,8 @@ void ScavTrap::attack(const std::string& target) {
 			  << target << ", causing " << attackDamage
 			  << " points of damage!\n";
 	--energyPoints;
+}
+
+void ScavTrap::guardGate() {
+	std::cout << "ScavTrap: " << name << " is now in Gate keeper mode\n";
 }

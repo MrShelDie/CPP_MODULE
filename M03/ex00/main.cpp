@@ -1,6 +1,8 @@
 #include <iostream>
 #include <climits>
+
 #include "ClapTrap.hpp"
+
 
 int main() {
 	ClapTrap a;

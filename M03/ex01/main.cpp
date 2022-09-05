@@ -3,6 +3,7 @@
 
 #include "ScavTrap.hpp"
 
+
 int main() {
 	ScavTrap a;
 	ScavTrap b("ClapTrap3000");

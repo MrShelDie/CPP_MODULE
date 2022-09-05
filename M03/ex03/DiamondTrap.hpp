@@ -22,6 +22,8 @@ public:
 
 private:
 
+	void init();
+
 	std::string name;
 
 };
