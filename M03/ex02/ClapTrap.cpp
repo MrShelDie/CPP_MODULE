@@ -11,7 +11,7 @@ ClapTrap::ClapTrap()
 ClapTrap::ClapTrap(const std::string& name)
 		: name(name), hitPoints(10),
 		  energyPoints(10), attackDamage(0) {
-	std::cout << "Claptrap: " << name << " constructed\n";
+	std::cout << "Claptrap: " << name << " constructed with name\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {

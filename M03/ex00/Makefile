@@ -5,7 +5,7 @@ DEP = $(SRC:.cpp=.d)
 NAME = a.out
 
 CXX = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 CPPFLAGS = -MMD
 
 all: $(NAME)

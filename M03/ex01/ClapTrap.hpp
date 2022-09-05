@@ -32,6 +32,11 @@ protected:
 	unsigned int energyPoints;
 	unsigned int attackDamage;
 
+
+private:
+
+	void init();
+
 };
 
 #endif

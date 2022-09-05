@@ -27,6 +27,8 @@ public:
 
 private:
 
+	void init();
+
 	std::string name;
 	unsigned int hitPoints;
 	unsigned int energyPoints;

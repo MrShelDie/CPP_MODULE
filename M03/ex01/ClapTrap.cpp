@@ -2,16 +2,12 @@
 #include <climits>
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
-		: name("default"), hitPoints(10),
-		  energyPoints(10), attackDamage(0) {
+ClapTrap::ClapTrap() : name("default") {
 	std::cout << "Claptrap: " << name << " constructed\n";
 }
 
-ClapTrap::ClapTrap(const std::string& name)
-		: name(name), hitPoints(10),
-		  energyPoints(10), attackDamage(0) {
-	std::cout << "Claptrap: " << name << " constructed\n";
+ClapTrap::ClapTrap(const std::string& name) : name(name) {
+	std::cout << "Claptrap: " << name << " constructed with name\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
@@ -32,6 +28,14 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 	}
 	std::cout << "Claptrap: " << name << " assigned with operator\n";
 	return *this;
+}
+
+
+
+void ClapTrap::init() {
+	hitPoints = 10;
+	energyPoints = 10;
+	attackDamage = 0;
 }
 
 

@@ -25,6 +25,10 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
 	return *this;
 }
 
+DiamondTrap::~DiamondTrap() {
+	std::cout << "DiamondTrap: " << name << " destructed\n";
+}
+
 void DiamondTrap::whoAmI() const {
 	std::cout << "DiamondTrap: " << "my name is " << name
 			  << ", my ClapTrap name is " << ClapTrap::name << "\n";
