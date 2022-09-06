@@ -11,7 +11,7 @@ ClapTrap::ClapTrap() : name("default") {
 
 ClapTrap::ClapTrap(const std::string& name) : name(name) {
 	init();
-	std::cout << "Claptrap: " << name << " constructed with name\n";
+	std::cout << "Claptrap: " << this->name << " constructed with name\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {

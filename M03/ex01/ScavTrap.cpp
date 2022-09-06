@@ -10,7 +10,7 @@ ScavTrap::ScavTrap() {
 
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
 	init();
-	std::cout << "ScavTrap: " << name << " constructed with name\n";
+	std::cout << "ScavTrap: " << this->name << " constructed with name\n";
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {

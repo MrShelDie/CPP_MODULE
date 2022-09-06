@@ -8,10 +8,11 @@ DiamondTrap::DiamondTrap() : name("default_clap_name") {
 	std::cout << "DiamondTrap: " << name << " constructed\n";
 }
 
-DiamondTrap::DiamondTrap(const std::string& name) : name(name + "_clap_name")
+DiamondTrap::DiamondTrap(const std::string& name)
+	: ClapTrap(name), FragTrap(name), ScavTrap(name), name(name + "_clap_name")
 {
 	init();
-	std::cout << "DiamondTrap: " << name << " constructed with name\n";
+	std::cout << "DiamondTrap: " << this->name << " constructed with name\n";
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& other)
