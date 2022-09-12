@@ -6,7 +6,7 @@ Dog::Dog() : Animal("Dog") {
 	std::cout << "Dog default contructor is called\n";
 }
 
-Dog::Dog(const Dog& other) : Animal(other) {
+Dog::Dog(const Dog& other) : Animal("Dog") {
 	std::cout << "Dog copy constructor is called\n";
 }
 
@@ -16,8 +16,6 @@ Dog::~Dog() {
 
 Dog& Dog::operator=(const Dog& other) {
 	std::cout << "Dog assignment operator is called\n";
-	if (&other != this)
-		type = other.type;
 	return *this;
 }
 

@@ -30,5 +30,28 @@ int main()
 	for (k = 0; k < NB_ANIMALS; ++k)
 		delete animals[k];
 
+	std::cout << "----------------------\n";
+
+	Cat catA;
+	Cat catB;
+
+	catA.getBrain()->ideas[42] = "new idea!!!";
+	catB.getBrain()->ideas[42] = "no idea((0(";
+
+	std::cout << "catA idea42: " << catA.getBrain()->ideas[42] << "\n";
+	std::cout << "catB idea42: " << catB.getBrain()->ideas[42] << "\n";
+
+	std::cout << catA.getBrain() << "\n";
+	std::cout << catB.getBrain() << "\n";
+
+	catB = catA;
+
+	std::cout << catA.getBrain() << "\n";
+	std::cout << catB.getBrain() << "\n";
+
+	std::cout << "catA idea42: " << catA.getBrain()->ideas[42] << "\n";
+	std::cout << "catB idea42: " << catB.getBrain()->ideas[42] << "\n";
+
+
 	return 0;
 }
