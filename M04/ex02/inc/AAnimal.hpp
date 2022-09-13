@@ -1,5 +1,5 @@
-#ifndef _ANIMAL_H_
-#define _ANIMAL_H_
+#ifndef _A_ANIMAL_H_
+#define _A_ANIMAL_H_
 
 #include <string>
 

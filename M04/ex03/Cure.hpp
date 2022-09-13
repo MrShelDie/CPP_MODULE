@@ -2,8 +2,9 @@
 #define _CURE_H_
 
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class Cure : AMateria {
+class Cure : public AMateria {
 
 public:
 
@@ -14,6 +15,7 @@ public:
 	Cure& operator=(const Cure& other);
 
 	AMateria* clone() const;
+	void use(ICharacter& target);
 
 };
 
