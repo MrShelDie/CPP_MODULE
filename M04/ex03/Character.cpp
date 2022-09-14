@@ -61,6 +61,6 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	if (static_cast<size_t>(idx) < NB_INVENTORY_SLOTS)
+	if (static_cast<size_t>(idx) < NB_INVENTORY_SLOTS && inventory[idx])
 		inventory[idx]->use(target);
 }

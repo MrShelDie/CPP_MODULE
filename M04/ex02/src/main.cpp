@@ -4,8 +4,6 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-class A {};
-
 int main()
 {
 	const size_t NB_ANIMALS = 4;

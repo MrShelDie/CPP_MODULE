@@ -7,6 +7,8 @@ class MateriaSource : public IMateriaSource {
 
 public:
 
+	static const size_t NB_INVENTORY_SLOTS = 4;
+
 	MateriaSource();
 	MateriaSource(const MateriaSource& other);
 	~MateriaSource();
@@ -18,8 +20,6 @@ public:
 
 
 private:
-
-	static const size_t NB_INVENTORY_SLOTS = 4;
 
 	AMateria* inventory[NB_INVENTORY_SLOTS];
 	size_t nextEmptySlot;
