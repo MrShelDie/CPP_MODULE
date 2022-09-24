@@ -1,8 +1,8 @@
 #include "AForm.hpp"
 
 AForm::AForm() :
-	name("NoName"),
 	target("NoTarget"),
+	name("NoName"),
 	gradeToSign(Bureaucrat::MAX_GRADE),
 	gradeToExecute(Bureaucrat::MAX_GRADE),
 	formSigned(false)
@@ -16,8 +16,8 @@ AForm::AForm(
 	const int gradeToSign,
 	const int gradeToExecute
 ) :
-	name(name),
 	target(target),
+	name(name),
 	gradeToSign(gradeToSign),
 	gradeToExecute(gradeToExecute), 
 	formSigned(false)
@@ -26,8 +26,8 @@ AForm::AForm(
 }
 
 AForm::AForm(const int gradeToSign, const int gradeToExecute) :
-	name("NoName"),
 	target("NoTarget"),
+	name("NoName"),
 	gradeToSign(gradeToSign),
 	gradeToExecute(gradeToExecute), 
 	formSigned(false)
@@ -36,10 +36,12 @@ AForm::AForm(const int gradeToSign, const int gradeToExecute) :
 }
 
 AForm::AForm(const AForm& other) :
-	gradeToSign(Bureaucrat::MAX_GRADE),
-	gradeToExecute(Bureaucrat::MAX_GRADE)
+	target(other.target),
+	name(other.name),
+	gradeToSign(other.gradeToSign),
+	gradeToExecute(other.gradeToExecute)
 {
-	*this = other;
+
 }
 
 AForm::~AForm() {
@@ -100,15 +102,15 @@ void AForm::checkGrades() const {
 }
 
 const char* AForm::GradeTooHighException::what() const throw() {
-	return "grade to high";
+	return "grade is too high";
 }
 
 const char* AForm::GradeTooLowException::what() const throw() {
-	return "grade to low";
+	return "grade is too low";
 }
 
 const char* AForm::FormNotSignedException::what() const throw() {
-	return "form not signed";
+	return "form isn't signed";
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& obj) {

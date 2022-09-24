@@ -3,19 +3,18 @@
 
 #include "AForm.hpp"
 
-class RobotomyRequestAForm: public AForm {
-
+class RobotomyRequestForm: public AForm
+{
 	public:
 
-		RobotomyRequestAForm();
-		RobotomyRequestAForm(const std::string& name);
-		RobotomyRequestAForm(const RobotomyRequestAForm& other);
-		~RobotomyRequestAForm();
+		RobotomyRequestForm();
+		RobotomyRequestForm(const std::string& name, const std::string& targer);
+		RobotomyRequestForm(const RobotomyRequestForm& other);
+		~RobotomyRequestForm();
 
-		RobotomyRequestAForm& operator=(const RobotomyRequestAForm& other);
+		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 
 		virtual void execute(const Bureaucrat& executor) const;
-
 };
 
 #endif

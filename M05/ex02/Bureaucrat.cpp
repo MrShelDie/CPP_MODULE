@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : name("NoName"), grade(MIN_GRADE) {
 
@@ -50,15 +50,25 @@ void Bureaucrat::lowerGrade() {
 	++grade;
 }
 
-void Bureaucrat::signForm(Form& form) const {
+void Bureaucrat::signForm(AForm& form) const {
 	try {
 		form.beSigned(*this);
 		std::cout << name << " signed " << form.getName() << "\n";
 	} catch (std::exception& e) {
 		std::cout << name << " couldn’t sign " << form.getName()
-				  << " because " << " bureaucrat's " << e.what() << "\n";
+				  << " because " <<  e.what() << "\n";
 	}	
 }	
+
+void Bureaucrat::executeForm(const AForm& form) {
+	try {
+		form.execute(*this);
+		std::cout << name << " executed " << form.getName() << "\n";	
+	} catch (std::exception& e) {
+		std::cout << name << " couldn’t execute " << form.getName()
+				  << " because " << e.what() << "\n";
+	}
+}
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Error: grade too high";

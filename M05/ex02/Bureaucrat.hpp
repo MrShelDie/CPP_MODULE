@@ -4,7 +4,7 @@
 #include <string>
 #include <ostream>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 
@@ -35,7 +35,8 @@ public:
 
 	void raiseGrade();
 	void lowerGrade();
-	void signForm(Form& form) const;
+	void signForm(AForm& form) const;
+	void executeForm(const AForm& form);
 
 private:
 	
