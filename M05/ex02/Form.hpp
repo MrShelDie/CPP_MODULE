@@ -6,7 +6,7 @@
 
 #include "Bureaucrat.hpp"
 
-class AForm {
+class Form {
 
 public:
 
@@ -25,15 +25,15 @@ public:
 		const char* what() const throw();
 	};
 
-	AForm();
-	AForm(const std::string& name,
+	Form();
+	Form(const std::string& name,
 		  const std::string& target,
 		  const int gradeToSign,
 		  const int gradeToExecute);
-	AForm(const AForm& other);
-	virtual ~AForm();
+	Form(const Form& other);
+	virtual ~Form();
 
-	AForm& operator=(const AForm& other);
+	Form& operator=(const Form& other);
 
 	virtual void execute(const Bureaucrat& executor) const = 0;
 
@@ -48,7 +48,7 @@ public:
 
 protected:
 
-	AForm(const int gradeToSign, const int gradeToExecute);
+	Form(const int gradeToSign, const int gradeToExecute);
 
 	void checkToExecute(const Bureaucrat& executor) const;
 
@@ -66,6 +66,6 @@ private:
 
 };
 
-std::ostream& operator<<(std::ostream& os, const AForm& obj);
+std::ostream& operator<<(std::ostream& os, const Form& obj);
 
 #endif
