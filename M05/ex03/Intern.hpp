@@ -10,7 +10,7 @@ class Intern {
 
 public:
 
-	class FormDoesNotExistException {
+	class FormDoesNotExistException : public std::exception {
 	public:
 		const char* what() const throw();
 	};

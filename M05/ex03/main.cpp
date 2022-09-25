@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "Intern.hpp"
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -7,49 +8,73 @@
 
 int main()
 {
-	{
-		ShrubberyCreationForm shrubberyCreationForm("ShrubberyForm", "SomeShrubbery");
-		Bureaucrat bob("bob", 146);
-		Bureaucrat bill("bill", 135);
-		Bureaucrat mike("mike", 100);
 
-		bob.signForm(shrubberyCreationForm);
-		mike.executeForm(shrubberyCreationForm);
-		bill.signForm(shrubberyCreationForm);
-		mike.executeForm(shrubberyCreationForm);
+	Form *ppf = NULL;
+	Form *rrf = NULL;
+	Form *scf = NULL;
+
+	try {
+		Intern someRandomIntern;
+
+		ppf = someRandomIntern.makeForm("presidential pardon", "Bender");	
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");	
+		scf = someRandomIntern.makeForm("shrubbery creation", "Bender");	
+
+		std::cout << "\n";
+
+		{
+			Bureaucrat bob("bob", 146);
+			Bureaucrat bill("bill", 135);
+			Bureaucrat mike("mike", 100);
+
+			bob.signForm(*scf);
+			mike.executeForm(*scf);
+			bill.signForm(*scf);
+			mike.executeForm(*scf);
+		}
+
+		std::cout << "\n";
+
+		{
+			Bureaucrat bob("bob", 146);
+			Bureaucrat bill("bill", 70);
+			Bureaucrat mike("mike", 40);
+
+			bob.signForm(*rrf);
+			mike.executeForm(*rrf);
+			bill.signForm(*rrf);
+			mike.executeForm(*rrf);
+			mike.executeForm(*rrf);
+			mike.executeForm(*rrf);
+			mike.executeForm(*rrf);
+			mike.executeForm(*rrf);
+		}
+
+		std::cout << "\n";
+
+		{
+			Bureaucrat bob("bob", 30);
+			Bureaucrat bill("bill", 15);
+			Bureaucrat mike("mike", 3);
+
+			bob.signForm(*ppf);
+			mike.executeForm(*ppf);
+			bill.signForm(*ppf);
+			mike.executeForm(*ppf);
+		}
+		
+		std::cout << "\n";
+
+		Form *uf = someRandomIntern.makeForm("unknown form", "Bender");	
+		delete(uf);
+
+	} catch (std::exception& e) {
+		std::cout << e.what() << "\n";	
 	}
 
-	std::cout << "\n";
-
-	{
-		RobotomyRequestForm robotomyRequestForm("RobotomyForm", "SomeRobot");
-		Bureaucrat bob("bob", 146);
-		Bureaucrat bill("bill", 70);
-		Bureaucrat mike("mike", 40);
-
-		bob.signForm(robotomyRequestForm);
-		mike.executeForm(robotomyRequestForm);
-		bill.signForm(robotomyRequestForm);
-		mike.executeForm(robotomyRequestForm);
-		mike.executeForm(robotomyRequestForm);
-		mike.executeForm(robotomyRequestForm);
-		mike.executeForm(robotomyRequestForm);
-		mike.executeForm(robotomyRequestForm);
-	}
-
-	std::cout << "\n";
-
-	{
-		PresidentialPardonForm presidentialPardonForm("PresidentialPardonForm", "SomeTarget");
-		Bureaucrat bob("bob", 30);
-		Bureaucrat bill("bill", 15);
-		Bureaucrat mike("mike", 3);
-
-		bob.signForm(presidentialPardonForm);
-		mike.executeForm(presidentialPardonForm);
-		bill.signForm(presidentialPardonForm);
-		mike.executeForm(presidentialPardonForm);
-	}
+	delete(ppf);
+	delete(rrf);
+	delete(scf);
 
 	return 0;
 }

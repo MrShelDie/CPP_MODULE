@@ -10,7 +10,7 @@ Intern::Intern() {
 }
 
 Intern::Intern(const Intern& other) {
-
+	(void)other;
 }
 
 Intern::~Intern() {
@@ -18,6 +18,7 @@ Intern::~Intern() {
 }
 
 Intern& Intern::operator=(const Intern& other) {
+	(void)other;
 	return *this;
 }
 
@@ -45,7 +46,7 @@ Form* Intern::makeShrubberyCreationForm(const std::string& target) const {
 }
 
 const char* Intern::FormDoesNotExistException::what() const throw() {
-	return "for with passed name doesn't exist";
+	return "form with passed name doesn't exist";
 }
 
 const std::string Intern::PRES_PARDON = "presidential pardon";

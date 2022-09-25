@@ -4,13 +4,14 @@ Bureaucrat.cpp					\
 Form.cpp						\
 PresidentialPardonForm.cpp		\
 RobotomyRequestForm.cpp			\
-ShrubberyCreationForm.cpp
+ShrubberyCreationForm.cpp		\
+Intern.cpp
 
 OBJ = $(SRC:.cpp=.o)
 DEP = $(SRC:.cpp=.d)
 
 NAME = a.out
-OUTFILE = SomeShrubbery_shrubbery
+OUTFILE = Bender_shrubbery
 
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
@@ -22,10 +23,10 @@ $(NAME): $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) -o $@
 
 clean:
-	$(RM) $(OBJ) $(DEP) $(OUTFILE)
+	$(RM) $(OBJ) $(DEP) 
 
 fclean:	clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(OUTFILE)
 
 re: fclean all
 
