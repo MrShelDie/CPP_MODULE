@@ -1,7 +1,7 @@
-SRC = convert.cpp	
+SRC = main.cpp	
 OBJ = $(SRC:.cpp=.o)
 
-NAME = convert
+NAME = a.out
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 
