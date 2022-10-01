@@ -1,3 +1,5 @@
+#include <cmath>
+#include <cerrno>
 #include <limits>
 #include <cctype>
 #include <cstdlib>
@@ -20,7 +22,7 @@ bool isInt(const std::string& arg) {
 	long int value;
 
 	value = std::strtol(arg.c_str(), &end, 10);
-	return !end
+	return  !end[0]
 			&& value >= std::numeric_limits<int>::min()
 			&& value <= std::numeric_limits<int>::max();
 }
@@ -31,34 +33,34 @@ bool isFloat(const std::string& arg) {
 
 	value = std::strtod(arg.c_str(), &end);
 	return arg == "nanf" || arg == "-inff" || arg == "+inff"
-			|| (end && std::string(end) == "f"
-				    && value >= std::numeric_limits<float>::min()
-				    && value <= std::numeric_limits<float>::max());
+			|| (end[0] && std::string(end) == "f"
+				       && std::abs(value) <= std::numeric_limits<float>::max());
 }
 
 bool isDouble(const std::string& arg) {
 	char* end;
 
 	std::strtod(arg.c_str(), &end);
-	return arg == "nan" || arg == "-inf" || arg == "+inf" || !end;
+	errno = 0;
+	return arg == "nan" || arg == "-inf" || arg == "+inf" || (!end[0] && errno != ERANGE);
 }
 
 Type getType(const std::string& arg) {
 	if (isChar(arg)) {
-		return Type::CHAR;
+		return CHAR;
 	} else if (isInt(arg)) {
-		return Type::INT;	
+		return INT;	
 	} else if (isFloat(arg)) {
-		return Type::FLOAT;
+		return FLOAT;
 	} else if (isDouble(arg)) {
-		return Type::DOUBLE;	
+		return DOUBLE;	
 	} else {
-		return Type::OTHER;
+		return OTHER;
 	}
 }
 
 void printChar(const std::string& arg) {
-	char c = static_cast<char>(std::strtol(arg.c_str(), NULL, 10));
+	char c = arg[0];
 	std::cout << "char: ";
 	std::isprint(c) ? std::cout << c << "\n" : std::cout << "Non displayable\n";
 
@@ -66,10 +68,10 @@ void printChar(const std::string& arg) {
 	std::cout << "int: " << i << "\n";
 
 	float f = static_cast<float>(c);
-	std::cout << "float: " << f << "\n";
+	std::cout << "float: " << f << ".0f" << "\n";
 
 	double d = static_cast<double>(c);
-	std::cout << "double: " << d << "\n";
+	std::cout << "double: " << d << ".0" << "\n";
 }
 
 void printInt(const std::string& arg) {
@@ -88,10 +90,10 @@ void printInt(const std::string& arg) {
 	std::cout << "int: " << i << "\n";
 
 	float f = static_cast<float>(i);
-	std::cout << "float: " << f << "\n"; 
+	std::cout << "float: " << f << ".0f" << "\n";
 	
 	double d = static_cast<double>(i);
-	std::cout << "double: " << d << "\n"; 
+	std::cout << "double: " << d << ".0" << "\n";
 }
 
 void printFloat(const std::string& arg) {
@@ -117,11 +119,11 @@ void printFloat(const std::string& arg) {
 		return;
 	}
 
-	float f = static_cast<float>(std::strtod(arg.c_str(), NULL));
+	double d = std::strtod(arg.c_str(), NULL);
 
-	char c = static_cast<char>(f);
+	char c = static_cast<char>(d);
 	std::cout << "char: ";
-	if (f < std::numeric_limits<char>::min() || f > std::numeric_limits<char>::max()) {
+	if (d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max()) {
 		std::cout << "impossible\n";
 	} else if (!std::isprint(c)) {
 		std::cout << "Non displayable\n";
@@ -129,26 +131,88 @@ void printFloat(const std::string& arg) {
 		std::cout << c << "\n";
 	}
 
-	int i = static_cast<int>(f);
+	int i = static_cast<int>(d);
 	std::cout << "int: ";
-	if (f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max()) {
+	if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max()) {
 		std::cout << "impossible\n";
 	} else {
 		std::cout << i << "\n";
 	}
 
-	std::cout << "float: " << f << "\n";
+	float f = static_cast<float>(d);
+	std::cout << "float: " << f;
+	if (std::floor(f) == f) {
+		std::cout << ".0f"; 
+	}
+	std::cout << "\n";
 
-	double d = static_cast<double>(f);
-	std::cout << "double: " << d << "\n";
+	std::cout << "double: " << d;
+	if (std::floor(d) == d) {
+		std::cout << ".0"; 
+	}
+	std::cout << "\n";
 }
 
 void printDouble(const std::string& arg) {
+	if (arg == "-inf") {
+		std::cout << "char: impossible\n"
+				  << "int: impossible\n"
+				  << "float: -inff\n"
+				  << "double: -inf\n";
+		return;
+	}
+	if (arg == "+inf") {
+		std::cout << "char: impossible\n"
+				  << "int: impossible\n"
+				  << "float: +inff\n"
+				  << "double: +inf\n";
+		return;
+	}
+	if (arg == "nan") {
+		std::cout << "char: impossible\n"
+				  << "int: impossible\n"
+				  << "float: nanf\n"
+				  << "double: nan\n";
+		return;
+	}
 
-}
+	double d = std::strtod(arg.c_str(), NULL);
+		
+	char c = static_cast<char>(d);
+	std::cout << "char: ";
+	if (d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max()) {
+		std::cout << "impossible\n";
+	} else if (!std::isprint(c)) {
+		std::cout << "Non displayable\n";
+	} else {
+		std::cout << c << "\n";
+	}
 
-void printOther() {
+	int i = static_cast<int>(d);
+	std::cout << "int: ";
+	if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max()) {
+		std::cout << "impossible\n";
+	} else {
+		std::cout << i << "\n";
+	}
 
+	float f = static_cast<float>(d);
+	std::cout << "float: "; 
+	if (std::abs(d) > std::numeric_limits<float>::max()) {
+		std::cout << "impossible\n";
+	} else {
+		std::cout << f;
+		if (std::floor(f) == f) {
+			std::cout << ".0f";
+		}
+		std::cout << "\n";
+	}
+
+	std::cout << "double: " << d;
+	if (std::floor(d) == d) {
+		std::cout << ".0"; 
+	}
+	std::cout << "\n";
 }
 
 int main(int argc, char **argv) {
@@ -160,20 +224,20 @@ int main(int argc, char **argv) {
 	std::string arg(argv[1]);
 	Type type = getType(arg);
 	switch (type) {
-		case Type::CHAR:
+		case CHAR:
 			printChar(arg);
 			break;
-		case Type::INT:
+		case INT:
 			printInt(arg);
 			break;
-		case Type::FLOAT:
+		case FLOAT:
 			printFloat(arg);
 			break;
-		case Type::DOUBLE:
+		case DOUBLE:
 			printDouble(arg);
 			break;
 		default:
-			printOther();
+			printDouble("nan");
 	}
 
 	return 0;
