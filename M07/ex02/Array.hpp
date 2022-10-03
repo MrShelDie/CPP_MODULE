@@ -1,6 +1,8 @@
 #ifndef _ARRAY_H_
 #define _ARRAY_H_
 
+#include <string>
+#include <sstream>
 #include <cstddef>
 #include <exception>
 
@@ -8,11 +10,6 @@ template <typename T>
 class Array {
 
 public:
-
-	class OutOfBounds : public std::exception {
-	public:
-		const char* what() const throw();
-	};
 
 	Array();
 	Array(unsigned int n);
@@ -50,7 +47,7 @@ Array<T>::Array(const Array& other) {
 	this->arrPtr = this->arrSize ? new T[this->arrSize]() : NULL;
 
 	for (unsigned int i = 0; i < this->arrSize; ++i) {
-		this->arrPtr[i] = other->arrPtr[i];
+		this->arrPtr[i] = other.arrPtr[i];
 	}
 }
 
@@ -72,7 +69,7 @@ Array<T>& Array<T>::operator=(const Array& other) {
 	}
 
 	for (unsigned int i = 0; i < this->arrSize; ++i) {
-		this->arrSize[i] = other.arrSize[i];
+		this->arrPtr[i] = other.arrPtr[i];
 	}
 
 	return *this;
@@ -81,13 +78,8 @@ Array<T>& Array<T>::operator=(const Array& other) {
 template <typename T>
 T& Array<T>::operator[](unsigned int pos) {
 	if (pos >= this->arrSize)
-		throw OutOfBounds();	
+		throw std::exception();	
 	return this->arrPtr[pos];
-}
-
-template <typename T>
-const char* Array<T>::OutOfBounds::what() const throw() {
-	return "Index out of bounds";
 }
 
 template <typename T>
