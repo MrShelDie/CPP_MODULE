@@ -75,6 +75,7 @@ int main()
 
 		for (int i = 0; i < MAX_VAL; ++i)
 		{
+			tmp[0]++;
 			if (tmp[i] != numbers[i])
 			{
 				std::cerr << "didn't copy the same value!!" << std::endl;
