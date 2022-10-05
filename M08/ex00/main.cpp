@@ -23,8 +23,9 @@ int main()
 			*it = 42;
 		}
 
-		for (size_t i = 0; i < SIZE; ++i) 
+		for (size_t i = 0; i < SIZE; ++i) {
 			std::cout << intv[i] << " "; 
+		}
 		std::cout << "\n";
 
 		try {
@@ -54,8 +55,9 @@ int main()
 			*it = 41;
 		}
 		
-		for (std::list<int>::iterator it = intl.begin(); it != intl.end(); ++it) 
+		for (std::list<int>::iterator it = intl.begin(); it != intl.end(); ++it) {
 			std::cout << *it << " ";
+		}
 		std::cout << "\n";
 
 		try {
