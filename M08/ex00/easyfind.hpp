@@ -5,13 +5,12 @@
 #include <algorithm>
 
 template <typename T>
-typename T::iterator easyfind(const T& t, int toFind) {
-
+typename T::iterator easyfind(T& t, int toFind)
+{
 	typename T::iterator res = find(t.begin(), t.end(), toFind);
 
-	if (res == t.end()) {
+	if (res == t.end())
 		throw std::exception();
-	}
 
 	return res;
 }
