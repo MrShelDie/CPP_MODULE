@@ -9,6 +9,7 @@
 
 int main() {
 #ifdef INTRA_TEST
+
   Span sp = Span(5);
 
   sp.addNumber(6);
@@ -19,7 +20,9 @@ int main() {
 
   std::cout << sp.shortestSpan() << std::endl;
   std::cout << sp.longestSpan() << std::endl; 
+
 #else
+
   try {
     Span sp;
     sp.addNumber(1);
@@ -121,6 +124,7 @@ int main() {
     std::cout << sp3.shortestSpan() << " ";
     std::cout << sp3.longestSpan() << "\n"; 
   }
+
 #endif
 
   return 0;
