@@ -7,9 +7,7 @@ Span::Span() : maxSize(0) {
 
 }
 
-Span::Span(unsigned int N)
-    : nums(N),
-      maxSize(N) {
+Span::Span(unsigned int N) : maxSize(N) {
 
 }
 
@@ -69,4 +67,12 @@ unsigned int Span::longestSpan() {
   if (nums.size() < 2)
     throw NoSpanCanBeFoundException();
   return *nums.rbegin() - *nums.begin();
+}
+
+const char* Span::NoSpaceException::what() const throw() {
+  return "Span already has the maximum number of elements";
+}
+
+const char* Span::NoSpanCanBeFoundException::what() const throw() {
+  return "The number of elements in the span is less than two";
 }

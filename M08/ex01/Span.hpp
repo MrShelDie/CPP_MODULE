@@ -22,7 +22,10 @@ class Span {
 
   Span& operator=(const Span& other);
 
+  template <class InputIt>
+  void addNumber(InputIt begin, InputIt end);
   void addNumber(int num);
+
   unsigned int shortestSpan();
   unsigned int longestSpan();
 
@@ -30,5 +33,14 @@ class Span {
   std::list<int> nums;
   unsigned int maxSize;
 };
+
+template <class InputIt>
+void Span::addNumber(InputIt first, InputIt last) {
+  if (std::distance(first, last) > maxSize) {
+    throw NoSpaceException();
+  }
+  nums = std::list<int>(first, last);
+  nums.sort();
+}
 
 #endif
