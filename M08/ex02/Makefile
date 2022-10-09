@@ -1,9 +1,9 @@
-SRC = main.cpp Span.cpp
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 NAME = a.out
 CXX = c++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -g
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 

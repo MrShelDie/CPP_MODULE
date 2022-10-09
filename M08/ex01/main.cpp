@@ -5,7 +5,7 @@
 
 #include "Span.hpp"
 
-//#define INTRA_TEST
+// #define INTRA_TEST
 
 int main() {
 #ifdef INTRA_TEST
